@@ -184,6 +184,10 @@ contract FreelanceBountyBoard {
         // Your implementation here
         require(bounties[bountyId].employer == msg.sender, "Employer is not the one who posted bounty");
         require(bounties[bountyId].status == Status.Submitted, "Bounty not submitted");
+        (bool ok, ) = freelancer.call{value: bounties[bountyId].amount}("");
+        require(ok, "Transfer failed");
+        
+        emit BountyPaid(bountyId, freelancer, bounties[bountyId].amount);
     }
 
     // -----------------------------------------------------------------------
@@ -193,7 +197,7 @@ contract FreelanceBountyBoard {
     /// @notice True if this address has registered as a freelancer
     function isRegistered(address freelancer) external view returns (bool) {
         // Your implementation here
-        if (isFreelancer[owner]){
+        if (isFreelancer[freelancer]){
             return true;
         }
         return false;
@@ -202,7 +206,7 @@ contract FreelanceBountyBoard {
     /// @notice The skill this freelancer registered with ("" if unregistered)
     function getSkill(address freelancer) external view returns (string memory) {
         // Your implementation here
-        return freelancerSkill[owner];
+        return freelancerSkill[freelancer];
     }
 
     /// @notice True if this freelancer applied for this bounty
