@@ -55,7 +55,7 @@ contract FreelanceBountyBoard {
 
     mapping (uint256 => bounty) public bounties;
 
-    mapping (address => bool) public registeredBounties;
+    mapping (address => uint256) public registeredBounties;
 
     bounty[] public bountyrec;
 
@@ -138,7 +138,8 @@ contract FreelanceBountyBoard {
         require(isFreelancer[owner], "Must be a freelancer");
         require(bounties[bountyId].status == Status.Open, "Bounty is not open");
         require(keccak256(bytes(bounties[bountyId].skill)) == keccak256(bytes(freelancerSkill[owner])));
-
+        require(registeredBounties[owner] != bountyId, "You already applied");
+        registeredBounties[owner] = bountyId;
 
 
         emit AppliedForBounty(bountyId, owner);
@@ -155,7 +156,11 @@ contract FreelanceBountyBoard {
     // - Emit WorkSubmitted(bountyId, msg.sender, submissionUrl)
     function submitWork(uint256 bountyId, string calldata submissionUrl) external {
         // Your implementation here
-        require(AppliedForBounty(bountyId, owner), "You did not ")
+        require(registeredBounties[owner] == bountyId, "You did not apply");
+        require(bounties[bountyId].status == Status.Open, "The bounty is closed");
+        bounties[bountyId].status = Status.Submitted;
+
+        emit WorkSubmitted(bountyId, owner, submissionUrl);
 
     }
 
@@ -201,6 +206,10 @@ contract FreelanceBountyBoard {
     /// @notice True if this freelancer applied for this bounty
     function hasApplied(uint256 bountyId, address freelancer) external view returns (bool) {
         // Your implementation here
+        if (registeredBounties[freelancer] == bountyId){
+            return true;
+        }
+        return false;
         
     }
 
