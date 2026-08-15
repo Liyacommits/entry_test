@@ -55,6 +55,8 @@ contract FreelanceBountyBoard {
 
     mapping (uint256 => bounty) public bounties;
 
+    mapping (address => bool) public registeredBounties;
+
     bounty[] public bountyrec;
 
 
@@ -78,6 +80,8 @@ contract FreelanceBountyBoard {
         require(bytes(skill).length > 0, "Skill cannot be empty");
 
         freelancerSkill[owner] = skill;
+
+        isFreelancer[owner] = true;
 
         emit FreelancerRegistered(owner, skill);
 
@@ -134,7 +138,9 @@ contract FreelanceBountyBoard {
         require(isFreelancer[owner], "Must be a freelancer");
         require(bounties[bountyId].status == Status.Open, "Bounty is not open");
         require(keccak256(bytes(bounties[bountyId].skill)) == keccak256(bytes(freelancerSkill[owner])));
-        
+
+
+
         emit AppliedForBounty(bountyId, owner);
         
     }
@@ -149,6 +155,8 @@ contract FreelanceBountyBoard {
     // - Emit WorkSubmitted(bountyId, msg.sender, submissionUrl)
     function submitWork(uint256 bountyId, string calldata submissionUrl) external {
         // Your implementation here
+        require(AppliedForBounty(bountyId, owner), "You did not ")
+
     }
 
     // -----------------------------------------------------------------------
@@ -187,11 +195,13 @@ contract FreelanceBountyBoard {
     /// @notice The skill this freelancer registered with ("" if unregistered)
     function getSkill(address freelancer) external view returns (string memory) {
         // Your implementation here
+        return freelancerSkill[owner];
     }
 
     /// @notice True if this freelancer applied for this bounty
     function hasApplied(uint256 bountyId, address freelancer) external view returns (bool) {
         // Your implementation here
+        
     }
 
     /// @notice All of a bounty's details, in this exact order
@@ -207,6 +217,7 @@ contract FreelanceBountyBoard {
         )
     {
         // Your implementation here
+        return bounties[bountyId];
     }
 
     // BONUS (not auto-marked, describe it in PartB_Design.md instead):
