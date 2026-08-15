@@ -59,8 +59,8 @@ database?"*
 **Your Answer:** B
 
 **Your Reasoning:**
-Blockchain is a decentralized market that tries to make all things fair with the usage of smart contracts. Instead of 
-Trusting people it relies on math and nodes to make conditions fair for everyone. So blockchain would be the way to go if you want a market of fairness and a market that is not easily manipulated.
+[Blockchain is a decentralized market that tries to make all things fair with the usage of smart contracts. Instead of 
+Trusting people it relies on math and nodes to make conditions fair for everyone. So blockchain would be the way to go if you want a market of fairness and a market that is not easily manipulated.]
 
 ---
 
@@ -87,7 +87,7 @@ You send a simple ETH transfer on Ethereum.
 - Converted to ETH (remember: 1 ETH = 1,000,000,000 gwei) = 420 000 / 1 000 000 000 = 0.00042 ETH
 - Converted to USD = 0.00042 * 3 000 = $1,26
 
-The reason why a smart contract function that writes to storage costs more than this simple transaction is because, smart contract have to query and ask other nodes in the blockchain whether the conditions have been met for the transaction to be made. With this simple transaction nothing is being done in the background so hence why it is a much simpler and cheaper than the smart contract.
+[The reason why a smart contract function that writes to storage costs more than this simple transaction is because, smart contract have to query and ask other nodes in the blockchain whether the conditions have been met for the transaction to be made. With this simple transaction nothing is being done in the background so hence why it is a much simpler and cheaper than the smart contract.]
 
 ---
 
@@ -112,7 +112,7 @@ Your smart contract needs to know the current ETH/USD price.
 
 **Your Reasoning:**
 
-If a single company is running the only oracle then it defeats the purpose of a blockchain because the block chain is meant to be decentralised which means that there is not monopoly and no one is in control of everything so if a single company determines what happens then it is not decentralised anymore. The decentalised oracle network gets a bunch of nodes to query an API and because nodes would get many different answers it then determines on which answer has the majority vote.
+[If a single company is running the only oracle then it defeats the purpose of a blockchain because the block chain is meant to be decentralised which means that there is not monopoly and no one is in control of everything so if a single company determines what happens then it is not decentralised anymore. The decentalised oracle network gets a bunch of nodes to query an API and because nodes would get many different answers it then determines on which answer has the majority vote.]
 
 ---
 
@@ -134,8 +134,8 @@ If a single company is running the only oracle then it defeats the purpose of a 
 **Your Answer:** D
 
 **Your Reasoning:**
-In proof of Stake attackers need to acquire a sufficient amount of the currency of the blockchain whether it is bitcoin or eth or whatever the blockchain uses then the blockchain will lock it up in a smart contract as a proof of stake and if they are deemed an attacker then they lose access to the blockchain and everything in their wallet.
-The difference between proof of stake and proof of work is that in proof of stake you need the currency where as in proof of work you need to have transaction that show you have interacted with the blockchain and made some transactions.
+[In proof of Stake attackers need to acquire a sufficient amount of the currency of the blockchain whether it is bitcoin or eth or whatever the blockchain uses then the blockchain will lock it up in a smart contract as a proof of stake and if they are deemed an attacker then they lose access to the blockchain and everything in their wallet.
+The difference between proof of stake and proof of work is that in proof of stake you need the currency where as in proof of work you need to have transaction that show you have interacted with the blockchain and made some transactions.]
 
 ---
 
@@ -158,7 +158,7 @@ The difference between proof of stake and proof of work is that in proof of stak
 **Your Answer:** A
 
 **Your Reasoning:**
-With layer 2s they execute transactions of the chain then verify them with the layer 1 conditions and with that it means that rollups can delay your transactions and relay/reorder the transactions again. However it can not steal from you and forge tansactions and signatures and basically pretend to be someone else's.
+[ With layer 2s they execute transactions of the chain then verify them with the layer 1 conditions and with that it means that rollups can delay your transactions and relay/reorder the transactions again. However it can not steal from you and forge tansactions and signatures and basically pretend to be someone else's.]
 
 ---
 
@@ -184,7 +184,7 @@ them.
 **Your Answer:** C
 
 **Your Reasoning:**
-So a signature proves that you are really and that every transaction you make is done by you. The trade-off that a user does by accepting holding their keys is that they can not hold the blockchain liable if their keys get stolen and they lose funds. The account abstraction tries to provide you with phrases and key words that only your account and you have access to to make it harder for people to guess the logins to your wallet or account. 
+[ So a signature proves that you are really and that every transaction you make is done by you. The trade-off that a user does by accepting holding their keys is that they can not hold the blockchain liable if their keys get stolen and they lose funds. The account abstraction tries to provide you with phrases and key words that only your account and you have access to to make it harder for people to guess the logins to your wallet or account.] 
 
 ---
 
@@ -219,12 +219,10 @@ uint256 index = uint256(
 - **D)** It is insecure on Ethereum but safe on a Layer 2, because the sequencer
   orders transactions privately.
 
-**Your Answer:** [A/B/C/D]
+**Your Answer:** B
 
 **Your Reasoning:**
-[2-3 sentences. Who specifically can manipulate this draw, and what would they
-have to do? You will implement this shortcut in Part B anyway - so be clear
-about what you are shipping.]
+[ Attackers, block proposers and malicious users can manipulate this draw. They can compute a result in the block and make it in a way that it favors them and block propers can drop and reorder a block to change an manipulate the outcome. ]
 
 ---
 
@@ -258,11 +256,25 @@ function approveAndPay(uint256 bountyId, address freelancer) external {
 - **D)** The `require` on `msg.sender` should use `tx.origin` instead, so that
   contracts cannot call the function at all.
 
-**Your Answer:** [A/B/C/D]
+**Your Answer:** C
 
 **Your Reasoning:**
 [2-3 sentences. Walk through the exact sequence an attacking contract would use.
-Then apply the fix in your own `approveAndPay` - it is auto-marked.]
+Then apply the fix in your own `approveAndPay` - it is auto-marked.
+The attacker would simply keep sending the transaction until the balance is drained of the currency. I would make sure that the tranactions and id is verified before send the crypto.
+
+```solidity
+function approveAndPay(uint256 bountyId, address freelancer) external {
+    Bounty storage b = bounties[bountyId];
+    require(msg.sender == b.employer, "Not the employer");
+
+     b.status = Status.Completed;
+
+    (bool ok, ) = freelancer.call{value: b.amount}("");
+    require(ok, "Transfer failed");
+
+}
+```]
 
 ---
 
@@ -275,5 +287,4 @@ Then apply the fix in your own `approveAndPay` - it is auto-marked.]
 
 ---
 
-**Challenges faced:** [What was difficult? Which concepts are you least
-confident about? Answering this honestly does not cost you marks.]
+**Challenges faced:** [Because I didn't go through the solidity completely some of the solidity things came as a surprise and I still have to get used to the coding of solidity it is similar to javascript so I guess I need to learn javascript.]
