@@ -42,6 +42,14 @@ describe("Example: how a Hardhat test is put together", function () {
     await expect(board.connect(alice).registerFreelancer("design")).to.be.reverted;
   });
 
+  it("emits an event when a bounty is posted", async function () {
+    const reward = ethers.parseEther("1");
+
+    await expect(board.connect(employer).postBounty("Get my car", "solidity", { value: reward }))
+      .to.emit(board, "BountyPosted")
+      .withArgs(1, employer.address, reward);
+  });
+
   // Useful things to know for the raffle:
   //
   //   move time forward 24 hours (needed before selectWinner):
