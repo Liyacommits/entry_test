@@ -35,19 +35,25 @@ contract FreelanceBountyBoard {
 
     // TODO: Define the rest of your state variables here.
     // Consider:
-
     // - How do you record who is registered, and with which skill?
     // - What does a bounty need to remember? (employer, description, skill,
     //   amount, status) A struct is a good fit here.
     // - How do you remember who applied for which bounty?
-    mapping (address => string) public freelancerSkill;
-    struct bounty {
+
+
+     struct bounty {
         address employer;
         string description;
         string skill;
         uint256 amount;
         Status status;
     }
+
+    mapping (address => string) public freelancerSkill;
+
+    bool public isFreelancer = false;
+
+
 
     constructor() {
         owner = msg.sender;
@@ -61,11 +67,12 @@ contract FreelanceBountyBoard {
     // - Revert if the caller is already registered
     // - Revert if the skill string is empty
     // - Emit FreelancerRegistered(msg.sender, skill)
+
     function registerFreelancer(string calldata skill) external {
         // Your implementation here
-        
+        require(isFreelancer, "caller already registered" );
+        require(bytes(skill).length > 0, "Skill cannot be empty");
 
-        FreelancerRegistered(msg.sender, skill);
     }
 
     // -----------------------------------------------------------------------
@@ -143,6 +150,10 @@ contract FreelanceBountyBoard {
     /// @notice True if this address has registered as a freelancer
     function isRegistered(address freelancer) external view returns (bool) {
         // Your implementation here
+        if (isFreelancer){
+            return true;
+        }
+        return false;
     }
 
     /// @notice The skill this freelancer registered with ("" if unregistered)
