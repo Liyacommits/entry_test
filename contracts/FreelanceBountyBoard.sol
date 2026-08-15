@@ -226,7 +226,14 @@ contract FreelanceBountyBoard {
         )
     {
         // Your implementation here
-        return bounties[bountyId];
+        return (
+            bounties[bountyId].employer,
+            bounties[bountyId].description,
+            bounties[bountyId].skill,
+            bounties[bountyId].amount,
+            bounties[bountyId].status
+
+                );
     }
 
     // BONUS (not auto-marked, describe it in PartB_Design.md instead):
