@@ -183,6 +183,7 @@ contract FreelanceBountyBoard {
     function approveAndPay(uint256 bountyId, address freelancer) external {
         // Your implementation here
         require(bounties[bountyId].employer == msg.sender, "Employer is not the one who posted bounty");
+        require(bounties[bountyId].status == Status.Submitted, "Bounty not submitted");
     }
 
     // -----------------------------------------------------------------------
