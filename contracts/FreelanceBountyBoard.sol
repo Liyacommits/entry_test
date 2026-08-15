@@ -51,7 +51,11 @@ contract FreelanceBountyBoard {
 
     mapping (address => string) public freelancerSkill;
 
-    bool public isFreelancer = false;
+    mapping (address => bool) public isFreelancer;
+
+    mapping (uint256 => bounty) public bounties;
+
+    bounty[] public bountyrec;
 
 
 
@@ -70,8 +74,12 @@ contract FreelanceBountyBoard {
 
     function registerFreelancer(string calldata skill) external {
         // Your implementation here
-        require(isFreelancer, "caller already registered" );
+        require(isFreelancer[owner], "caller already registered" );
         require(bytes(skill).length > 0, "Skill cannot be empty");
+
+        freelancerSkill[owner] = skill;
+
+        emit FreelancerRegistered(owner, skill);
 
     }
 
@@ -92,7 +100,18 @@ contract FreelanceBountyBoard {
         payable
         returns (uint256)
     {
-        // Your implementation here
+        require(msg.value > 0, "reward is 0");
+        bountyCount++;
+        bounties[bountyCount] = bounty({
+            employer: msg.sender,
+            description: description,
+            skill: skillRequired,
+            amount: msg.value,
+            status: Status.Open
+        });
+
+        
+
     }
 
     // -----------------------------------------------------------------------
@@ -109,6 +128,7 @@ contract FreelanceBountyBoard {
     //   keccak256(bytes(a)) == keccak256(bytes(b))
     function applyForBounty(uint256 bountyId) external {
         // Your implementation here
+        
     }
 
     // -----------------------------------------------------------------------
@@ -150,7 +170,7 @@ contract FreelanceBountyBoard {
     /// @notice True if this address has registered as a freelancer
     function isRegistered(address freelancer) external view returns (bool) {
         // Your implementation here
-        if (isFreelancer){
+        if (isFreelancer[owner]){
             return true;
         }
         return false;
