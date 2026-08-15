@@ -110,8 +110,11 @@ contract FreelanceBountyBoard {
             status: Status.Open
         });
 
-        
+        bountyrec.push(bounties[bountyCount]);
 
+        emit BountyPosted(bountyCount, msg.sender, msg.value);
+
+        return bountyCount;
     }
 
     // -----------------------------------------------------------------------
@@ -128,6 +131,11 @@ contract FreelanceBountyBoard {
     //   keccak256(bytes(a)) == keccak256(bytes(b))
     function applyForBounty(uint256 bountyId) external {
         // Your implementation here
+        require(isFreelancer[owner], "Must be a freelancer");
+        require(bounties[bountyId].status == Status.Open, "Bounty is not open");
+        require(keccak256(bytes(bounties[bountyId].skill)) == keccak256(bytes(freelancerSkill[owner])));
+        
+        emit AppliedForBounty(bountyId, owner);
         
     }
 
