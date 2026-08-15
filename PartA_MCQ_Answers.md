@@ -111,11 +111,7 @@ Your smart contract needs to know the current ETH/USD price.
 **Your Answer:** B
 
 **Your Reasoning:**
-[2-3 sentences. Why would a single company running the only oracle undermine the
-point of building on a blockchain? What does a decentralised oracle network do
-about that?
 
-]
 If a single company is running the only oracle then it defeats the purpose of a blockchain because the block chain is meant to be decentralised which means that there is not monopoly and no one is in control of everything so if a single company determines what happens then it is not decentralised anymore. The decentalised oracle network gets a bunch of nodes to query an API and because nodes would get many different answers it then determines on which answer has the majority vote.
 
 ---
@@ -138,8 +134,8 @@ If a single company is running the only oracle then it defeats the purpose of a 
 **Your Answer:** D
 
 **Your Reasoning:**
-[2-3 sentences. What does an attacker actually need to acquire to threaten a PoS
-chain, and what do they stand to lose? Name one difference from Proof of Work.]
+In proof of Stake attackers need to acquire a sufficient amount of the currency of the blockchain whether it is bitcoin or eth or whatever the blockchain uses then the blockchain will lock it up in a smart contract as a proof of stake and if they are deemed an attacker then they lose access to the blockchain and everything in their wallet.
+The difference between proof of stake and proof of work is that in proof of stake you need the currency where as in proof of work you need to have transaction that show you have interacted with the blockchain and made some transactions.
 
 ---
 
@@ -159,11 +155,10 @@ chain, and what do they stand to lose? Name one difference from Proof of Work.]
 - **D)** It reduces gas costs by lowering the base fee on Ethereum itself
   whenever the rollup is active.
 
-**Your Answer:** [A/B/C/D]
+**Your Answer:** A
 
 **Your Reasoning:**
-[2-3 sentences. Most rollups today run a single centralised sequencer. What can
-that sequencer do to you, and what can it *not* do?]
+With layer 2s they execute transactions of the chain then verify them with the layer 1 conditions and with that it means that rollups can delay your transactions and relay/reorder the transactions again. However it can not steal from you and forge tansactions and signatures and basically pretend to be someone else's.
 
 ---
 
@@ -186,11 +181,10 @@ them.
 - **D)** The seed phrase is just a backup of your public address, which is why it
   is safe to share with support staff if you get stuck.
 
-**Your Answer:** [A/B/C/D]
+**Your Answer:** C
 
 **Your Reasoning:**
-[2-3 sentences. What does a signature prove? What is the trade-off a user accepts
-by holding their own keys, and what does account abstraction do to soften it?]
+So a signature proves that you are really and that every transaction you make is done by you. The trade-off that a user does by accepting holding their keys is that they can not hold the blockchain liable if their keys get stolen and they lose funds. The account abstraction tries to provide you with phrases and key words that only your account and you have access to to make it harder for people to guess the logins to your wallet or account. 
 
 ---
 
