@@ -59,8 +59,8 @@ database?"*
 **Your Answer:** B
 
 **Your Reasoning:**
-[Blockchain is a decentralized market that tries to make all things fair with the usage of smart contracts. Instead of 
-Trusting people it relies on math and nodes to make conditions fair for everyone. So blockchain would be the way to go if you want a market of fairness and a market that is not easily manipulated.]
+Blockchain is a decentralized market that tries to make all things fair with the usage of smart contracts. Instead of 
+Trusting people it relies on math and nodes to make conditions fair for everyone. So blockchain would be the way to go if you want a market of fairness and a market that is not easily manipulated.
 
 ---
 
@@ -79,16 +79,15 @@ You send a simple ETH transfer on Ethereum.
 - **C)** 0.00042 ETH (about $1.26)
 - **D)** 0.0042 ETH (about $12.60)
 
-**Your Answer:** [D]
+**Your Answer:** C
 
 **Your Calculation:**
 
-- Total gas cost in gwei = [show your working]
-- Converted to ETH (remember: 1 ETH = 1,000,000,000 gwei) = [show your working]
-- Converted to USD = [show your working]
+- Total gas cost in gwei = 21 000 * 20 = 420 000 gwei
+- Converted to ETH (remember: 1 ETH = 1,000,000,000 gwei) = 420 000 / 1 000 000 000 = 0.00042 ETH
+- Converted to USD = 0.00042 * 3 000 = $1,26
 
-[Then, in one or two sentences: why does a smart contract function that writes
-to storage cost far more than this simple transfer?]
+The reason why a smart contract function that writes to storage costs more than this simple transaction is because, smart contract have to query and ask other nodes in the blockchain whether the conditions have been met for the transaction to be made. With this simple transaction nothing is being done in the background so hence why it is a much simpler and cheaper than the smart contract.
 
 ---
 
@@ -109,7 +108,7 @@ Your smart contract needs to know the current ETH/USD price.
   in a future upgrade.
 - **D)** Because API providers block blockchain nodes for security reasons.
 
-**Your Answer:** [B]
+**Your Answer:** B
 
 **Your Reasoning:**
 [2-3 sentences. Why would a single company running the only oracle undermine the
@@ -117,6 +116,7 @@ point of building on a blockchain? What does a decentralised oracle network do
 about that?
 
 ]
+If a single company is running the only oracle then it defeats the purpose of a blockchain because the block chain is meant to be decentralised which means that there is not monopoly and no one is in control of everything so if a single company determines what happens then it is not decentralised anymore. The decentalised oracle network gets a bunch of nodes to query an API and because nodes would get many different answers it then determines on which answer has the majority vote.
 
 ---
 
@@ -135,7 +135,7 @@ about that?
   attacker their own stake. The cost of that stake is also what makes Sybil
   attacks - one actor spinning up thousands of fake nodes - uneconomic.
 
-**Your Answer:** [A/B/C/D]
+**Your Answer:** D
 
 **Your Reasoning:**
 [2-3 sentences. What does an attacker actually need to acquire to threaten a PoS
