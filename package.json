@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "hardhat": "^2.22.0"
+    "hardhat": "^2.29.0"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.70.0"
