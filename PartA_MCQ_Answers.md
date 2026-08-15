@@ -56,11 +56,11 @@ database?"*
 - **D)** "Because a database can only handle a few thousand users, and
   blockchains scale infinitely."
 
-**Your Answer:** [A/B/C/D]
+**Your Answer:** B
 
 **Your Reasoning:**
-[2-3 sentences. What is the actual property a blockchain provides here? Name one
-honest cost of choosing it.]
+[Blockchain is a decentralized market that tries to make all things fair with the usage of smart contracts. Instead of 
+Trusting people it relies on math and nodes to make conditions fair for everyone. So blockchain would be the way to go if you want a market of fairness and a market that is not easily manipulated.]
 
 ---
 
@@ -79,7 +79,7 @@ You send a simple ETH transfer on Ethereum.
 - **C)** 0.00042 ETH (about $1.26)
 - **D)** 0.0042 ETH (about $12.60)
 
-**Your Answer:** [A/B/C/D]
+**Your Answer:** [D]
 
 **Your Calculation:**
 
@@ -109,12 +109,14 @@ Your smart contract needs to know the current ETH/USD price.
   in a future upgrade.
 - **D)** Because API providers block blockchain nodes for security reasons.
 
-**Your Answer:** [A/B/C/D]
+**Your Answer:** [B]
 
 **Your Reasoning:**
 [2-3 sentences. Why would a single company running the only oracle undermine the
 point of building on a blockchain? What does a decentralised oracle network do
-about that?]
+about that?
+
+]
 
 ---
 
