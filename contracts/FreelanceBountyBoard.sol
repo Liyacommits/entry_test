@@ -35,11 +35,19 @@ contract FreelanceBountyBoard {
 
     // TODO: Define the rest of your state variables here.
     // Consider:
-    
+
     // - How do you record who is registered, and with which skill?
     // - What does a bounty need to remember? (employer, description, skill,
     //   amount, status) A struct is a good fit here.
     // - How do you remember who applied for which bounty?
+    mapping (address => string) public freelancerSkill;
+    struct bounty {
+        address employer;
+        string description;
+        string skill;
+        uint256 amount;
+        Status status;
+    }
 
     constructor() {
         owner = msg.sender;
@@ -55,6 +63,9 @@ contract FreelanceBountyBoard {
     // - Emit FreelancerRegistered(msg.sender, skill)
     function registerFreelancer(string calldata skill) external {
         // Your implementation here
+        
+
+        FreelancerRegistered(msg.sender, skill);
     }
 
     // -----------------------------------------------------------------------
