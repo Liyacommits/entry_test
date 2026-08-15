@@ -76,7 +76,7 @@ contract FreelanceBountyBoard {
 
     function registerFreelancer(string calldata skill) external {
         // Your implementation here
-        require(isFreelancer[owner], "caller already registered" );
+        require(isFreelancer[owner] == false, "caller already registered" );
         require(bytes(skill).length > 0, "Skill cannot be empty");
 
         freelancerSkill[owner] = skill;
@@ -135,7 +135,7 @@ contract FreelanceBountyBoard {
     //   keccak256(bytes(a)) == keccak256(bytes(b))
     function applyForBounty(uint256 bountyId) external {
         // Your implementation here
-        require(isFreelancer[owner], "Must be a freelancer");
+        require(isFreelancer[owner] == true, "Must be a freelancer");
         require(bounties[bountyId].status == Status.Open, "Bounty is not open");
         require(keccak256(bytes(bounties[bountyId].skill)) == keccak256(bytes(freelancerSkill[owner])));
         require(registeredBounties[owner] != bountyId, "You already applied");
