@@ -182,6 +182,7 @@ contract FreelanceBountyBoard {
     // rather than transfer() or send().
     function approveAndPay(uint256 bountyId, address freelancer) external {
         // Your implementation here
+        require(bounties[bountyId].employer == msg.sender, "Employer is not the one who posted bounty");
     }
 
     // -----------------------------------------------------------------------
